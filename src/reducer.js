@@ -11,11 +11,18 @@ const reducer = (state, action) => {
         ...state,
         todos: [...state.todos, action.payload]
       };
-    case "DELETE":
+    case "COMPLETE":
       return {
         ...state,
-        todos: state.todos.filter(t => t !== action.payload)
+        todos: state.todos.filter(t => t !== action.payload),
+        complete: [...state.complete, action.payload],
       };
+    case "ADD_FROM_COMPLETE":
+      return {
+        ...state,
+        todos: [...state.todos, action.payload],
+        complete: state.complete.filter(t => t !== action.payload),
+    };
     case "THEME":
       return {
         ...state,

@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import Store from "../context";
 import DeleteIcon from "@material-ui/icons/Delete";
+import s from "./Punkt.module.css";
+
 import {
   List,
   ListItem,
@@ -22,6 +24,8 @@ const TodoList = () => {
     comment = "";
   }
 
+  let count_complete = state.complete.length;
+
   return (
     <div>
       <br />
@@ -40,7 +44,7 @@ const TodoList = () => {
                     <IconButton
                       edge="end"
                       aria-label="delete"
-                      onClick={() => dispatch({ type: "DELETE", payload: t })}
+                      onClick={() => dispatch({ type: "COMPLETE", payload: t })}
                     >
                       <DeleteIcon />
                     </IconButton>
@@ -48,6 +52,13 @@ const TodoList = () => {
                 </ListItem>
               ))}
             </List>
+            <div className={state.myTheme === 'light' ? s.complete : `${s.complete} ${s.dark}`}>
+                <Typography variant="h6">Complete list ({count_complete})</Typography>
+                <ul>
+                  {state.complete.map(t => <li key={t} onClick={() => dispatch({ type: "ADD_FROM_COMPLETE", payload: t })}>{t}</li>)}
+                </ul>
+            </div>
+            
           </div>
         </Grid>
       </Grid>

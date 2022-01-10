@@ -7,7 +7,8 @@ const Store = React.createContext({
     "Design with Figma",
     "Develop applications with 'React' and 'Material-UI'"
   ],
-  myTheme: "light"
+  myTheme: "light",
+  complete: ["Go to work", "Lunch"]
 });
 
 export default Store;
